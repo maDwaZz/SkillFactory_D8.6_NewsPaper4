@@ -55,7 +55,7 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'news_edit.html'
-    permission_required = ('news.create_post', )
+    permission_required = ('news.add_post', )
 
     # def form_valid(self, form):
     #     post = form.save(commit=False)
@@ -71,11 +71,11 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
         return context
 
 
-class NewsUpdate(PermissionRequiredMixin, UpdateView):
+class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'news_edit.html'
-    permission_required = ('news.update_post', )
+    permission_required = ('news.change_post', )
 
 
 class NewsDelete(DeleteView):
